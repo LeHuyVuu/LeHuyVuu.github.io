@@ -102,6 +102,7 @@ header {
   width: 57px;
   height: 57px;
   object-fit: cover;
+  border-radius: 40px ;
   opacity: 0;
   animation: slideRight 1s ease forwards;
 }
@@ -233,7 +234,6 @@ header {
     background-color: var(--gray);
   }
 }
-
 /* === Banner === */
 #banner {
   position: relative;
@@ -254,19 +254,13 @@ header {
 .banner__content h1,
 .banner__content h3 {
   margin: 0;
-  /* Loại bỏ khoảng cách mặc định của các thẻ tiêu đề */
   padding: 0;
-  /* Loại bỏ khoảng cách trong thẻ nếu cần */
 }
 
 .banner__content {
   display: flex;
   align-items: flex-start;
-  /* Căn chỉnh dọc */
   justify-content: space-around;
-  /* Căn chỉnh ngang nếu cần */
-
-  /* Khoảng cách giữa tiêu đề và hình ảnh */
   padding-top: 10px;
 }
 
@@ -275,13 +269,11 @@ header {
   animation: slideTop 1s ease forwards;
 }
 
-
 @keyframes slideRight {
   0% {
     transform: translateX(-100px);
     opacity: 0;
   }
-
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -292,11 +284,9 @@ header {
   0% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-15px);
   }
-
   100% {
     transform: translateY(0);
   }
@@ -307,7 +297,6 @@ header {
     transform: translateY(100px);
     opacity: 0;
   }
-
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -319,7 +308,6 @@ header {
     transform: translateX(100px);
     opacity: 0;
   }
-
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -331,21 +319,17 @@ header {
   font-weight: bold;
   color: rgb(49, 159, 159);
 }
-
 .banner__heading {
   max-width: 100%;
-  text-align: left;
-  /* Căn chỉnh văn bản sang trái */
+  text-align: left; /* Giữ căn trái */
   color: var(--gray);
-  width: 50%;
-  /* Thay đổi giá trị để điều chỉnh chiều rộng */
-  max-width: 1200px;
-  /* Đặt giới hạn chiều rộng tối đa nếu cần */
-  margin: 0 auto;
-  /* Căn giữa khối div */
+  width: 60%; /* Hoặc điều chỉnh kích thước theo nhu cầu */
+  max-width: 1200px; /* Kích thước tối đa */
+  margin: 0 auto; /* Không sử dụng auto cho margin bên trái */
   opacity: 0;
   animation: slideRight 1s ease forwards;
 }
+
 
 .banner__heading h3 {
   font-size: 2.25rem;
@@ -360,18 +344,14 @@ header {
 
 .banner__image {
   position: relative;
-
 }
 
 .banner__image img {
   display: block;
   height: auto;
   width: 300px;
-  /* Hoặc kích thước bạn muốn */
   -webkit-mask-image: linear-gradient(to top, transparent, black 80%);
   mask-image: linear-gradient(to top, transparent, black 70%);
-  /* Thay đổi màu sắc và các giá trị gradient để đạt hiệu ứng mong muốn */
-  /* box-shadow: ; */
   animation: floatImage 10s ease-in-out infinite;
   animation: slideLeft 1s ease forwards;
   animation-delay: calc(var(--x) * 0.2s);
@@ -381,17 +361,13 @@ header {
 
 .banner__image {
   color: #112D60;
- 
   animation: floatImage 4s ease-in-out infinite;
 }
 
-
 .social {
-  /* margin-top: 3em; */
   display: flex;
   justify-content: start;
   font-size: 2rem;
-
 }
 
 .social i {
@@ -408,20 +384,13 @@ header {
   opacity: 0;
   animation: slideLeft 1s ease forwards;
   animation-delay: calc(var(--x) * 0.2s);
-  /* Thay đổi */
-  
 }
-
 
 .social a:hover {
   background-color: #15d48e;
   color: #112D60;
   box-shadow: 0 0 20px #15d48e;
 }
-
-
-
-
 
 .banner__btn {
   font-size: 1rem;
@@ -444,25 +413,70 @@ header {
   transition: var(--smooth);
 }
 
-@media (min-width: 62em) {
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
   .banner__heading {
-    text-align: initial;
-    margin: 0;
-    padding-top: 0;
+    width: 70%; /* Chiều rộng lớn hơn trên màn hình nhỏ hơn */
+  }
+
+  .banner__image img {
+    width: 250px; /* Điều chỉnh kích thước ảnh */
+  }
+}
+
+@media (max-width: 992px) {
+  .banner__content {
+    flex-direction: column; /* Căn chỉnh dọc cho màn hình nhỏ hơn */
+    align-items: center; /* Căn giữa nội dung */
+    width: 100%; /* Giảm chiều rộng xuống 80% */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+   
+  }
+
+  .banner__heading {
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    text-align: center; /* Căn giữa tiêu đề */
+  }
+
+  .banner__image {
+    display: none; /* Ẩn phần tử hình ảnh */
+  }
+
+  .banner__image img {
+    width: 200px; /* Điều chỉnh kích thước ảnh */
+  }
+}
+
+@media (max-width: 768px) {
+  .banner__heading h3 {
+    font-size: 1.5rem; /* Giảm kích thước tiêu đề */
+  }
+
+  .banner__heading p {
+    font-size: 0.9rem; /* Giảm kích thước văn bản */
   }
 
   .banner__socials {
-    justify-content: flex-start;
-  }
-
-  .banner__socials a {
-    margin-right: 45px;
-  }
-
-  .banner__img {
-    width: 60%;
+    flex-direction: column; /* Căn chỉnh dọc các liên kết mạng xã hội */
+    align-items: center; /* Căn giữa các liên kết */
   }
 }
+
+@media (max-width: 992px) {
+  .banner__heading h1 {
+    font-size: 1.8rem; /* Giảm kích thước h1 */
+  }
+
+  .banner__heading h4 {
+    font-size: 1rem; /* Giảm kích thước h4 */
+  }
+
+  .social {
+    font-size: 1.5rem; /* Giảm kích thước biểu tượng mạng xã hội */
+    justify-content: center;
+  }
+}
+
 
 /* === Things === */
 #things {
@@ -774,12 +788,16 @@ header {
 }
 
 
-#myInfo{
+#myInfo {
   color: var(--gray);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .myInfo-item {  
-  /* background-color: #0f0715; */
   border: 2px solid #6c5b7b;
   border-radius: 20px;
   padding: 20px;
@@ -787,7 +805,7 @@ header {
   color: #f8f8f2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 49%;
+  width: calc(50% - 40px); /* Để đảm bảo khoảng cách giữa các mục */
 }
 
 .myInfo-item:hover {
@@ -805,6 +823,13 @@ header {
   padding-bottom: 10px;
 }
 
+/* Tech images */
+.tech {
+  display: flex;
+  justify-content: flex-start; /* Căn trái cho các icon */
+  flex-wrap: wrap; /* Cho phép các icon xuống dòng */
+}
+
 .tech img {
   margin-right: 10px;
   transition: transform 0.2s ease-in-out;
@@ -812,6 +837,32 @@ header {
 
 .tech img:hover {
   transform: scale(1.2);
+}
+
+/* Responsive font sizes for h5 */
+.myInfo-item h5 {
+  font-size: 24px; /* Kích thước chữ mặc định */
+}
+
+@media (max-width: 768px) {
+  .myInfo-item {
+    width: 100%; /* Chiếm toàn bộ chiều rộng trên màn hình vừa */
+  }
+  .myInfo-item h5 {
+    font-size: 20px; /* Chữ nhỏ hơn trên màn hình vừa */
+  }
+}
+
+@media (max-width: 576px) {
+  .myInfo-item h5 {
+    font-size: 18px; /* Chữ nhỏ hơn trên màn hình nhỏ */
+  }
+}
+
+@media (max-width: 400px) {
+  .myInfo-item h5 {
+    font-size: 16px; /* Chữ nhỏ nhất trên màn hình rất nhỏ */
+  }
 }
 
 .experience-content p, .achievements-content p {
@@ -823,18 +874,9 @@ header {
   color: var(--gray);
 }
 
-#myInfo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:  space-between;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .all_tech, .experience-content, .achievements-content {
   margin-top: 15px;
 }
-
 
 a:hover {
   text-decoration: underline;
@@ -849,11 +891,6 @@ h6 {
 p {
   color: #bbbbbb;
 }
-
-
-
-
-
 
 /* My project  */
 * {
