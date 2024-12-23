@@ -1060,3 +1060,23 @@ p {
   --d: 3600deg; /* Hiệu ứng quay conic-gradient */
   transition: 0.5s, 60s linear --d;
 }
+
+
+
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8); /* Làm mờ nền */
+  z-index: 9999; /* Đảm bảo nằm trên cùng */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

@@ -248,7 +248,7 @@
               class="btn-github">
               <i class="fab fa-github"></i> View GitHub
             </a>
-            <a href="https://koi-med-center-service.vercel.app" target="_blank"
+            <a href="https://my-time-store.vercel.app" target="_blank"
               class="btn btn-live-demo">
               <i class="fas fa-play-circle"></i> Try Now
             </a>
@@ -300,27 +300,32 @@
           <h1>CONTACT ME</h1>
           <!-- contact -->
           <div class="footer__contact">
-            <form action class="contact__form grid" id="contact-form">
-              <div class="contact__group grid">
-                <input type="text" placeholder="Name" required
-                  class="contact__input">
-                <input type="email" placeholder="Email" required
-                  class="contact__input">
-              </div>
-              <div>
-                <textarea name placeholder="Message" required
-                  class="contact__input contact__area"></textarea>
-
-              </div>
-              <button type="submit" class="button contact__button">Send
-                Message</button>
-
-            </form>
+              <form action class="contact__form grid" id="contact-form">
+                  <div class="contact__group grid">
+                      <input type="text" placeholder="Name" required class="contact__input" id="name">
+                      <input type="email" placeholder="Email" required class="contact__input" id="email">
+                  </div>
+                  <div>
+                      <textarea placeholder="Message" required class="contact__input contact__area" id="message"></textarea>
+                  </div>
+                  <button onclick="sendEmail()" class="button contact__button">Send Message</button>
+              </form>
           </div>
+      </div>
+      
 
         </div>
       </div>
     </footer>
+
+
+    <div id="loader" style="display: none;">
+      <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Sending...</span>
+      </div>
+  </div>
+  
+    
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/28c0af3030.js"
@@ -333,6 +338,55 @@
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script>
+
+
+
+(function () {
+    emailjs.init("PL8gMYLSA7J6k-atS"); // Khởi tạo EmailJS với Public Key
+})();
+function sendEmail() {
+    // Hiển thị loader
+    document.getElementById("loader").style.display = "flex";
+
+    // Lấy dữ liệu từ các trường trong form
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Message:", message);
+
+    // Kiểm tra dữ liệu đầu vào
+    if (!name || !email || !message) {
+        alert("Please fill in all fields!");
+        document.getElementById("loader").style.display = "none";
+        return;
+    }
+
+    // Gửi email qua EmailJS
+    emailjs.send("service_p1co6e9", "template_8lnoa8h", {
+        from_name: name,
+        from_email: email,
+        message: message,
+    })
+    .then(function (response) {
+        console.log("Email sent successfully:", response);
+        alert("Email sent successfully!");
+        document.getElementById("contact-form").reset(); // Reset form
+        // document.getElementById("loader").style.display = "none"; // Ẩn loader
+    })
+    .catch(function (error) {
+        console.error("Error sending email:", error);
+        alert("Failed to send email. Check the console for more details.");
+       
+    });
+}
+
+    </script>
   </body>
 
 </html>
