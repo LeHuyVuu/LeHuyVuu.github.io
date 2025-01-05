@@ -22,6 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
       preloader.style.opacity = 0;
       preloader.style.transition = "opacity 0.5s ease";
       setTimeout(() => preloader.style.display = "none", 500);
-    }, 4500); // Delay to ensure typing animation completes
+    }, 3000); // Delay to ensure typing animation completes
   };
 });
